@@ -1,0 +1,3 @@
+rootProject.name = 'gradle-parent'
+include "gradle-api"
+include "gradle-core"

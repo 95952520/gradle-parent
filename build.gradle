@@ -1,0 +1,80 @@
+
+buildscript {
+    ext {
+        springBootVersion = '2.1.6.RELEASE'
+    }
+    repositories {
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+allprojects {
+    apply plugin: 'idea'
+
+    group = 'com.xuchen.gradle'
+    version = '0.0.1'
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+}
+
+ext {//依赖版本
+
+    springBootVersion = "2.1.6.RELEASE"
+    mybatisStarterVersion = "2.1.0"
+    lombokVersion = "1.18.8"
+    mysqlConnectorVersion = "5.1.47"
+    mybatisVersion = "1.3.2"
+    mybatisPlusGeneratorVersion = "3.1.2"
+    hutoolVersion = "4.5.8"
+    poiVersion = "4.1.0"
+
+    lib = [
+            "starter":"org.springframework.boot:spring-boot-starter:${springBootVersion}",
+            "starter-web":"org.springframework.boot:spring-boot-starter-web:${springBootVersion}",
+            "starter-jdbc":"org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}",
+            "starter-thymeleaf":"org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}",
+            "starter-freemarker":"org.springframework.boot:spring-boot-starter-freemarker:${springBootVersion}",
+            "starter-aop":"org.springframework.boot:spring-boot-starter-aop:${springBootVersion}",
+            "lombok":"org.projectlombok:lombok:${lombokVersion}",
+            "mysql":"mysql:mysql-connector-java:${mysqlConnectorVersion}",
+            "mybatis":"org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisVersion}",
+            "mybatisPlus":"com.baomidou:mybatis-plus-boot-starter:${mybatisPlusGeneratorVersion}",
+            "hutool":"cn.hutool:hutool-all:${hutoolVersion}",
+
+            //test
+            "mybatisPlusGenerator":"com.baomidou:mybatis-plus-generator:${mybatisPlusGeneratorVersion}",
+            "starter-test":"org.springframework.boot:spring-boot-starter-test:${springBootVersion}",
+            "poi":"org.apache.poi:poi-ooxml:${poiVersion}",
+    ]
+
+}
+
+subprojects {
+    apply plugin: 'java'
+    sourceCompatibility = '1.8'
+    targetCompatibility  = '1.8'
+
+    repositories {
+        maven { url "https://maven.aliyun.com/repository/public" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        mavenCentral()
+
+    }
+
+
+
+
+    dependencies {
+        annotationProcessor "${lib.lombok}"
+        compileOnly "${lib.lombok}"
+        implementation "${lib.'starter'}"
+        implementation "${lib.'mybatis'}"
+        implementation "${lib.'mybatisPlus'}"
+        testImplementation "${lib.'starter-test'}"
+    }
+}
