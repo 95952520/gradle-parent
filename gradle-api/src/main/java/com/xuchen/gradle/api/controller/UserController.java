@@ -2,9 +2,9 @@ package com.xuchen.gradle.api.controller;
 
 
 import com.xuchen.gradle.api.controller.base.BaseController;
-import com.xuchen.gradle.core.entity.User;
-import com.xuchen.gradle.core.model.R;
-import com.xuchen.gradle.core.service.UserService;
+import com.xuchen.gradle.core.base.entity.User;
+import com.xuchen.gradle.core.base.model.R;
+import com.xuchen.gradle.core.base.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

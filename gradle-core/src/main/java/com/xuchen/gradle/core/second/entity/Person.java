@@ -1,6 +1,7 @@
-package com.xuchen.gradle.core.entity;
+package com.xuchen.gradle.core.second.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import java.util.Date;
 import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -8,17 +9,17 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author xuchen
- * @since 2019-08-09
+ * @since 2019-09-05
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("user")
-public class User implements Serializable {
+@TableName("person")
+public class Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -36,6 +37,8 @@ public class User implements Serializable {
      * 密码
      */
     private String password;
+
+    private Date createTime;
 
 
 }

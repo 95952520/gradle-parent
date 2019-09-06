@@ -1,6 +1,6 @@
-package com.xuchen.gradle.core.dao;
+package com.xuchen.gradle.core.base.dao;
 
-import com.xuchen.gradle.core.entity.User;
+import com.xuchen.gradle.core.base.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

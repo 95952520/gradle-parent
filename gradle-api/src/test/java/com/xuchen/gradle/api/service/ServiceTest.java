@@ -1,12 +1,16 @@
 package com.xuchen.gradle.api.service;
 
-import com.xuchen.gradle.core.entity.User;
-import com.xuchen.gradle.core.service.UserService;
+import com.xuchen.gradle.core.base.entity.User;
+import com.xuchen.gradle.core.base.service.UserService;
+import com.xuchen.gradle.core.second.entity.Person;
+import com.xuchen.gradle.core.second.service.PersonService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 /**
  * @author xuchen
@@ -18,15 +22,12 @@ public class ServiceTest {
 
     @Autowired
     UserService userService;
+    @Autowired
+    PersonService personService;
 
     @Test
     public void service() {
-        for (int i = 0; i < 10; i++) {
-            User user = new User();
-            user.setId(i);
-            user.setNickName("nickName" + i);
-            user.setPassword("password" + i);
-            userService.save(user);
-        }
+        List<User> list = userService.list();
+        System.out.println(list);
     }
 }

@@ -1,4 +1,4 @@
-package com.xuchen.gradle.core.model;
+package com.xuchen.gradle.core.base.model;
 
 import lombok.Data;
 
