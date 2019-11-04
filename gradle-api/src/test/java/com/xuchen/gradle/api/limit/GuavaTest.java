@@ -19,7 +19,8 @@ public class GuavaTest {
 
         for (int i = 0; i < 100; i++) {
             final int no = i;
-            Runnable runnable = () -> {
+            //执行线程
+            exec.execute(() -> {
                 try {
                     //获取许可
                     rateLimiter.acquire();
@@ -28,10 +29,7 @@ public class GuavaTest {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
-            };
-            //执行线程
-            exec.execute(runnable);
+            });
         }
         //退出线程池
         exec.shutdown();

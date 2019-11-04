@@ -1,5 +1,4 @@
 dependencies {
     implementation "${lib.'starter-thymeleaf'}"
     implementation "${lib.'starter-aop'}"
-    implementation "${lib.'hutool'}"
 }

@@ -1,12 +1,16 @@
 package com.xuchen.gradle.api.service;
 
+import cn.hutool.json.JSONUtil;
 import com.xuchen.gradle.core.entity.User;
 import com.xuchen.gradle.core.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 /**
  * @author xuchen
@@ -14,6 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Slf4j
 public class ServiceTest {
 
     @Autowired
@@ -21,12 +26,7 @@ public class ServiceTest {
 
     @Test
     public void service() {
-        for (int i = 0; i < 10; i++) {
-            User user = new User();
-            user.setId(i);
-            user.setNickName("nickName" + i);
-            user.setPassword("password" + i);
-            userService.save(user);
-        }
+        List<User> list = userService.list();
+        log.info(JSONUtil.toJsonPrettyStr(list));
     }
 }

@@ -34,6 +34,7 @@ ext {//依赖版本
     poiVersion = "4.1.0"
     //令牌桶
     guavaVersion = "20.0"
+    zxingVersion = "3.4.0"
 
     lib = [
             "starter":"org.springframework.boot:spring-boot-starter:${springBootVersion}",
@@ -53,6 +54,7 @@ ext {//依赖版本
             "starter-test":"org.springframework.boot:spring-boot-starter-test:${springBootVersion}",
             "poi":"org.apache.poi:poi-ooxml:${poiVersion}",
             "guava":"com.google.guava:guava:${guavaVersion}",
+            "zxing":"com.google.zxing:core:${zxingVersion}",
     ]
 
 }
@@ -79,5 +81,7 @@ subprojects {
         implementation "${lib.'mybatis'}"
         implementation "${lib.'mybatisPlus'}"
         testImplementation "${lib.'starter-test'}"
+        implementation "${lib.'hutool'}"
+        implementation "${lib.'zxing'}"
     }
 }
