@@ -1,4 +1,3 @@
-
 buildscript {
     ext {
         springBootVersion = '2.1.6.RELEASE'
@@ -35,6 +34,7 @@ ext {//依赖版本
     //令牌桶
     guavaVersion = "20.0"
     zxingVersion = "3.4.0"
+    rocketMqVersion = "4.6.0"
 
     lib = [
             "starter":"org.springframework.boot:spring-boot-starter:${springBootVersion}",
@@ -48,6 +48,8 @@ ext {//依赖版本
             "mybatis":"org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisVersion}",
             "mybatisPlus":"com.baomidou:mybatis-plus-boot-starter:${mybatisPlusGeneratorVersion}",
             "hutool":"cn.hutool:hutool-all:${hutoolVersion}",
+            "rocketMqCommon":"org.apache.rocketmq:rocketmq-common:${rocketMqVersion}",
+            "rocketMqClient":"org.apache.rocketmq:rocketmq-client:${rocketMqVersion}",
 
             //test
             "mybatisPlusGenerator":"com.baomidou:mybatis-plus-generator:${mybatisPlusGeneratorVersion}",
@@ -65,10 +67,10 @@ subprojects {
     targetCompatibility  = '1.8'
 
     repositories {
+        mavenLocal()
         maven { url "https://maven.aliyun.com/repository/public" }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         mavenCentral()
-
     }
 
 

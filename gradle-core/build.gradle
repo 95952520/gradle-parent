@@ -1,4 +1,6 @@
 dependencies {
     implementation "${lib.'starter-thymeleaf'}"
     implementation "${lib.'starter-aop'}"
+    compile "${lib.'rocketMqCommon'}"
+    compile "${lib.'rocketMqClient'}"
 }
