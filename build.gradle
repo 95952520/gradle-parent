@@ -1,17 +1,18 @@
 buildscript {
     ext {
-        springBootVersion = '2.1.6.RELEASE'
+        springBootVersion = "2.1.6.RELEASE"
     }
     repositories {
         maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
     }
 }
 
 allprojects {
     apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
 
     group = 'com.xuchen.gradle'
     version = '0.0.1'
@@ -79,6 +80,8 @@ subprojects {
     dependencies {
         annotationProcessor "${lib.lombok}"
         compileOnly "${lib.lombok}"
+        testAnnotationProcessor "${lib.lombok}"
+        testCompileOnly "${lib.lombok}"
         implementation "${lib.'starter'}"
         implementation "${lib.'mybatis'}"
         implementation "${lib.'mybatisPlus'}"

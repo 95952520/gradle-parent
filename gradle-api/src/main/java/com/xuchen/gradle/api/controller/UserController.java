@@ -4,7 +4,6 @@ package com.xuchen.gradle.api.controller;
 import cn.hutool.core.img.ImgUtil;
 import cn.hutool.extra.qrcode.QrCodeUtil;
 import cn.hutool.extra.qrcode.QrConfig;
-import com.xuchen.gradle.api.controller.base.BaseController;
 import com.xuchen.gradle.core.entity.User;
 import com.xuchen.gradle.core.model.R;
 import com.xuchen.gradle.core.service.UserService;
@@ -32,7 +31,7 @@ import java.nio.charset.StandardCharsets;
 @Slf4j
 @RestController
 @RequestMapping("/user")
-public class UserController extends BaseController {
+public class UserController {
 
     @Autowired
     UserService userService;

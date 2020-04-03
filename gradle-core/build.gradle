@@ -1,6 +1,14 @@
 dependencies {
     implementation "${lib.'starter-thymeleaf'}"
     implementation "${lib.'starter-aop'}"
-    compile "${lib.'rocketMqCommon'}"
-    compile "${lib.'rocketMqClient'}"
+    implementation "${lib.'rocketMqCommon'}"
+    implementation "${lib.'rocketMqClient'}"
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
 }

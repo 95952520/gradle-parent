@@ -1,5 +1,5 @@
 dependencies {
-    compile project(":gradle-core")
+    implementation project(":gradle-core")
     implementation "${lib.'starter-web'}"
     implementation "${lib.'mysql'}"
 
