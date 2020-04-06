@@ -2,6 +2,8 @@ dependencies {
     implementation project(":gradle-core")
     implementation "${lib.'starter-web'}"
     implementation "${lib.'mysql'}"
+    implementation "${lib.'starter-aop'}"
+
 
     testImplementation "${lib.'mybatisPlusGenerator'}"
     testImplementation "${lib.'starter-freemarker'}"

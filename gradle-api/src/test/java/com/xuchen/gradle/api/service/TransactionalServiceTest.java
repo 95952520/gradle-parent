@@ -2,8 +2,8 @@ package com.xuchen.gradle.api.service;
 
 import cn.hutool.poi.excel.ExcelUtil;
 import cn.hutool.poi.excel.ExcelWriter;
-import com.xuchen.gradle.core.entity.User;
-import com.xuchen.gradle.core.service.UserService;
+import com.xuchen.gradle.core.mysql.user.entity.User;
+import com.xuchen.gradle.core.mysql.user.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

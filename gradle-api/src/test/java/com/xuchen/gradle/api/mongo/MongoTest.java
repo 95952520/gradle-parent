@@ -1,16 +1,13 @@
-package com.xuchen.gradle.api.service;
+package com.xuchen.gradle.api.mongo;
 
-import cn.hutool.json.JSONUtil;
-import com.xuchen.gradle.core.mysql.user.entity.User;
-import com.xuchen.gradle.core.mysql.user.service.UserService;
+import com.xuchen.gradle.core.mongo.dao.MUserDao;
+import com.xuchen.gradle.core.mongo.entity.MUser;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.List;
 
 /**
  * @author xuchen
@@ -19,14 +16,13 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Slf4j
-public class ServiceTest {
+public class MongoTest {
 
     @Autowired
-    UserService userService;
+    MUserDao mUserDao;
 
     @Test
     public void service() {
-        List<User> list = userService.list();
-        log.info(JSONUtil.toJsonPrettyStr(list));
+
     }
 }

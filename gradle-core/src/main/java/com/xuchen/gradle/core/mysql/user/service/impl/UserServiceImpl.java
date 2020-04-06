@@ -1,8 +1,8 @@
-package com.xuchen.gradle.core.service.impl;
+package com.xuchen.gradle.core.mysql.user.service.impl;
 
-import com.xuchen.gradle.core.entity.User;
-import com.xuchen.gradle.core.dao.UserDao;
-import com.xuchen.gradle.core.service.UserService;
+import com.xuchen.gradle.core.mysql.user.dao.UserDao;
+import com.xuchen.gradle.core.mysql.user.service.UserService;
+import com.xuchen.gradle.core.mysql.user.entity.User;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

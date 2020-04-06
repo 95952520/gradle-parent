@@ -1,6 +1,6 @@
-package com.xuchen.gradle.core.service;
+package com.xuchen.gradle.core.mysql.user.service;
 
-import com.xuchen.gradle.core.entity.User;
+import com.xuchen.gradle.core.mysql.user.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

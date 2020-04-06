@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.xuchen.gradle.core.dao")
+@MapperScan("com.xuchen.gradle.core.mysql.user.dao")
 public class GradleServerApplication {
 
     public static void main(String[] args) {
