@@ -2,6 +2,7 @@ package com.xuchen.gradle.core.rocket.producer;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
+import com.xuchen.gradle.core.mysql.user.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
@@ -22,10 +23,10 @@ public class ProducerService {
     /**
      * 同步消息
      */
-    public void syncSend(String topic, String tags, String msg) {
+    public void syncSendUser(String topic, String tags, User user) {
         String destination = getDestination(topic, tags);
-        log.info(StrUtil.format("给主题[{}]发同步消息[{}]", destination, msg));
-        Message message = MessageBuilder.withPayload(msg).build();
+        log.info(StrUtil.format("给主题[{}]发同步消息[{}]", destination, JSONUtil.toJsonStr(user)));
+        Message<User> message = MessageBuilder.withPayload(user).build();
         SendResult result = rocketMQTemplate.syncSend(destination, message);
         log.info(StrUtil.format("同步消息响应[{}]", JSONUtil.toJsonStr(result)));
     }
@@ -36,7 +37,7 @@ public class ProducerService {
     public void asyncSend(String topic, String tags, String msg) {
         String destination = getDestination(topic, tags);
         log.info(StrUtil.format("给主题[{}]发异步消息[{}]", destination, msg));
-        Message message = MessageBuilder.withPayload(msg).build();
+        Message<String> message = MessageBuilder.withPayload(msg).build();
         rocketMQTemplate.asyncSend(destination, message, new SendCallback() {
             @Override
             public void onSuccess(SendResult sendResult) {
@@ -56,7 +57,7 @@ public class ProducerService {
     public void oneWaySend(String topic, String tags, String msg) {
         String destination = getDestination(topic, tags);
         log.info(StrUtil.format("给主题[{}]发异步消息[{}]", destination, msg));
-        Message message = MessageBuilder.withPayload(msg).build();
+        Message<String> message = MessageBuilder.withPayload(msg).build();
         rocketMQTemplate.sendOneWay(destination, message);
     }
 

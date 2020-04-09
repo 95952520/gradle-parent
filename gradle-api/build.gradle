@@ -4,9 +4,9 @@ dependencies {
     implementation "${lib.'mysql'}"
     implementation "${lib.'starter-aop'}"
 
-
     testImplementation "${lib.'mybatisPlusGenerator'}"
     testImplementation "${lib.'starter-freemarker'}"
     testImplementation "${lib.'poi'}"
     testImplementation "${lib.'guava'}"
+    testImplementation "${lib.'rocketMq'}"
 }
