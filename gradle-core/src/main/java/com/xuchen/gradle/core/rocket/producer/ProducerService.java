@@ -8,6 +8,7 @@ import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
@@ -19,11 +20,15 @@ public class ProducerService {
 
     @Autowired
     RocketMQTemplate rocketMQTemplate;
+    @Value("${my.rocket.topic:myTopic}")
+    String topic;
+    @Value("${my.rocket.tags:myTags}")
+    String tags;
 
     /**
      * 同步消息
      */
-    public void syncSendUser(String topic, String tags, User user) {
+    public void syncSendUser(User user) {
         String destination = getDestination(topic, tags);
         log.info(StrUtil.format("给主题[{}]发同步消息[{}]", destination, JSONUtil.toJsonStr(user)));
         Message<User> message = MessageBuilder.withPayload(user).build();
@@ -34,7 +39,7 @@ public class ProducerService {
     /**
      * 异步消息
      */
-    public void asyncSend(String topic, String tags, String msg) {
+    public void asyncSend(String msg) {
         String destination = getDestination(topic, tags);
         log.info(StrUtil.format("给主题[{}]发异步消息[{}]", destination, msg));
         Message<String> message = MessageBuilder.withPayload(msg).build();
@@ -54,7 +59,7 @@ public class ProducerService {
     /**
      * 单向消息
      */
-    public void oneWaySend(String topic, String tags, String msg) {
+    public void oneWaySend(String msg) {
         String destination = getDestination(topic, tags);
         log.info(StrUtil.format("给主题[{}]发异步消息[{}]", destination, msg));
         Message<String> message = MessageBuilder.withPayload(msg).build();

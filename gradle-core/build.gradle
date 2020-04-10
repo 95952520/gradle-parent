@@ -1,6 +1,7 @@
 dependencies {
     implementation "${lib.'starter-thymeleaf'}"
-    implementation "${lib.'rocketMq'}"
+
+//    implementation "${lib.'starter-web'}"
     //没有引用mongo时不报错
 //    implementation "${lib.'mongo'}"
     compileOnly "${lib.'mongo'}"

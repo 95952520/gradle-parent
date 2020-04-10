@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-@RocketMQMessageListener(topic = "myTopic", consumerGroup = "consumerGroup")
-public class ConsumerService implements RocketMQListener<MessageExt> {
+@RocketMQMessageListener(topic = "myTopic", selectorExpression = "myTags", consumerGroup = "consumerGroup")
+public class ConsumerStringService implements RocketMQListener<MessageExt> {
     @Override
     public void onMessage(MessageExt message) {
-        log.warn(StrUtil.format("接受到消息主题[{}],tags[{}],msg[{}]", message.getTopic(), message.getTags(), StrUtil.str(message.getBody(), CharsetUtil.UTF_8)));
+        log.warn(StrUtil.format("[String]接受到消息主题[{}],tags[{}],msg[{}]", message.getTopic(), message.getTags(), StrUtil.str(message.getBody(), CharsetUtil.UTF_8)));
     }
 }

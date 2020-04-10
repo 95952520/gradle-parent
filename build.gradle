@@ -81,10 +81,12 @@ subprojects {
         testAnnotationProcessor "${lib.lombok}"
         testCompileOnly "${lib.lombok}"
         implementation "${lib.'starter'}"
+        implementation "${lib.'starter-web'}"
         implementation "${lib.'mybatis'}"
         implementation "${lib.'mybatisPlus'}"
         testImplementation "${lib.'starter-test'}"
         implementation "${lib.'hutool'}"
         implementation "${lib.'zxing'}"
+        implementation "${lib.'rocketMq'}"
     }
 }

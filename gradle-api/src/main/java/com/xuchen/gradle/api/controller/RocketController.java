@@ -1,6 +1,5 @@
 package com.xuchen.gradle.api.controller;
 
-import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.RandomUtil;
 import com.xuchen.gradle.core.model.R;
 import com.xuchen.gradle.core.mysql.user.entity.User;
@@ -20,25 +19,25 @@ public class RocketController {
     ProducerService producerService;
 
     @GetMapping("sync")
-    public R syncSend(String topic,String tags,String msg){
+    public R syncSend(String msg) {
         User user = User.builder()
                 .nickName(msg)
                 .createTime(LocalDateTime.now())
                 .id(RandomUtil.randomInt(100))
                 .build();
-        producerService.syncSendUser(topic, tags, user);
-        return R.success();
+        producerService.syncSendUser(user);
+        return R.success(user);
     }
 
     @GetMapping("async")
-    public R asyncSend(String topic,String tags,String msg){
-        producerService.asyncSend(topic, tags, msg);
+    public R asyncSend(String msg) {
+        producerService.asyncSend(msg);
         return R.success();
     }
 
     @GetMapping("oneWay")
-    public R oneWaySend(String topic,String tags,String msg){
-        producerService.oneWaySend(topic, tags, msg);
+    public R oneWaySend(String msg) {
+        producerService.oneWaySend(msg);
         return R.success();
     }
 }
