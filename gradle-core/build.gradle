@@ -1,5 +1,6 @@
 dependencies {
     implementation "${lib.'starter-thymeleaf'}"
+    implementation "${lib.'jwt'}"
 
 //    implementation "${lib.'starter-web'}"
     //没有引用mongo时不报错
