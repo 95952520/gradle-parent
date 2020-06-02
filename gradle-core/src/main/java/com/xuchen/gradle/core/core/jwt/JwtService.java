@@ -6,7 +6,9 @@ import cn.hutool.json.JSONUtil;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.xuchen.gradle.core.model.ex.AuthException;
 import com.xuchen.gradle.core.mysql.user.entity.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -26,17 +28,19 @@ public class JwtService {
     int expiresMin;
 
     private static Algorithm ALGORITHM;
+    private static JWTVerifier verifier;
 
     @PostConstruct
     public void init(){
         ALGORITHM = Algorithm.HMAC256(secret);
+        verifier = JWT.require(ALGORITHM).build();
     }
 
     public String generateToken(User user){
+        user.setPassword(null);
         DateTime expireTime = DateUtil.offsetMinute(DateUtil.date(), expiresMin);
         String token = JWT.create()
-                .withClaim("id",user.getId())
-                .withClaim("nickName",user.getNickName())
+                .withClaim("customer_user",JSONUtil.toJsonStr(user))
                 .withIssuer("gradleServer")
                 .withSubject("gradleSubject")
                 .withIssuedAt(DateUtil.date())
@@ -47,16 +51,14 @@ public class JwtService {
     }
 
     public User parseToken(String token){
-        JWTVerifier verifier = JWT.require(ALGORITHM)
-                .build();
-        DecodedJWT jwt = verifier.verify(token);
-        System.out.println(JSONUtil.toJsonPrettyStr(jwt));
-        System.out.println(jwt);
-        System.out.println(jwt.getClaim("id"));
-        System.out.println(jwt.getClaim("nickName"));
-        System.out.println(jwt.getHeaderClaim("id"));
-        System.out.println(jwt.getHeaderClaim("nickName"));
-        System.out.println(DateUtil.date(jwt.getExpiresAt()));
-        return null;
+        DecodedJWT jwt;
+        try {
+            jwt = verifier.verify(token);
+        }catch (TokenExpiredException tokenExpiredException){
+            throw new AuthException(4000, "token过期");
+        }catch (Exception e){
+            throw new AuthException(4001, "token解析失败");
+        }
+        return JSONUtil.toBean(jwt.getClaim("customer_user").asString(),User.class);
     }
 }

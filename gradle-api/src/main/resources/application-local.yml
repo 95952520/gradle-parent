@@ -4,9 +4,19 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/just_test?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=false
-    username: movit
-    password: root
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=false
+    username: test
+    password: 123456
+#  redis:
+#    host: localhost
+#    password: password
+#    database: 2
+#    port: 16379
+#    timeout: 5000
+#    lettuce:
+#      pool:
+#        max-active: 8
+#        min-idle: 0
 #  data:
 #    mongodb:
 #      database: test
@@ -15,7 +25,13 @@ spring:
 #      password: test
 #      host: localhost
 #      authentication-database: admin
-rocketmq:
-  name-server: localhost:9876
-  producer:
-    group: myProGroup
+#rocketmq:
+#  name-server: localhost:9876
+#  producer:
+#    group: myProGroup
+
+
+#my:
+#  rocket:
+#    topic: myTopic
+#    tags: myTags

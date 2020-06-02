@@ -1,0 +1,2 @@
+jni4net实现java调用c#的dll
+https://github.com/jni4net/jni4net/

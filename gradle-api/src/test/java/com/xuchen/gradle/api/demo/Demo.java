@@ -3,9 +3,6 @@ package com.xuchen.gradle.api.demo;
 
 import cn.hutool.http.HttpResponse;
 import cn.hutool.http.HttpUtil;
-import cn.hutool.json.JSONUtil;
-
-import java.util.HashMap;
 
 /**
  * @author xuchen
@@ -19,12 +16,9 @@ public class Demo {
 //                    put("createTime", "2020-04-09 09:58:34");
 //                }}))
 //                .execute();
-//        HttpResponse response = HttpUtil.createGet("http://localhost/user/get")
-//                .form("id", "5")
-////                .form("createTime", "2020-04-09T09:58:34")
-//                .execute();
-        HttpResponse response = HttpUtil.createGet("http://localhost/rocket/sync")
-                .form("msg", "myMsg")
+        HttpResponse response = HttpUtil.createGet("http://localhost/hello")
+                .header("Authorization", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJncmFkbGVTdWJqZWN0IiwiY3VzdG9tZXJfdXNlciI6IntcImNyZWF0ZVRpbWVcIjoxNTkxMDg2MTI3OTk3LFwibmlja05hbWVcIjpcIm5pY2tOYW1lOTlcIixcImlkXCI6OTl9IiwiaXNzIjoiZ3JhZGxlU2VydmVyIiwiZXhwIjoxNTkxMDkzMzI4LCJpYXQiOjE1OTEwODYxMjh9.3X73XUB5Ng4cHfd6g2ebRgY9AW6ULjEnuIaMmBhkxFg")
+                .form("name", "xuchen")
                 .execute();
         System.out.println(response.body());
     }

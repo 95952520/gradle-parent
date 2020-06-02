@@ -24,7 +24,7 @@ allprojects {
 
 ext {//依赖版本
 
-    springBootVersion = "2.1.6.RELEASE"
+    springBootVersion = "2.3.0.RELEASE"
     mybatisStarterVersion = "2.1.0"
     lombokVersion = "1.18.8"
     mysqlConnectorVersion = "5.1.47"
@@ -37,6 +37,7 @@ ext {//依赖版本
     zxingVersion = "3.4.0"
     rocketMqVersion = "2.0.4"
     jwtVersion = "3.10.2"
+    commonPool2Version = "2.8.0"
 
     lib = [
             "starter"             : "org.springframework.boot:spring-boot-starter:${springBootVersion}",
@@ -51,6 +52,9 @@ ext {//依赖版本
             "mybatisPlus"         : "com.baomidou:mybatis-plus-boot-starter:${mybatisPlusGeneratorVersion}",
             "hutool"              : "cn.hutool:hutool-all:${hutoolVersion}",
             "jwt"                 : "com.auth0:java-jwt:${jwtVersion}",
+            "starter-redis"       : "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}",
+            "common-pool2"        : "org.apache.commons:commons-pool2:${commonPool2Version}",
+            "mongo"               : "org.springframework.boot:spring-boot-starter-data-mongodb:${springBootVersion}",
 
             //test
             "mybatisPlusGenerator": "com.baomidou:mybatis-plus-generator:${mybatisPlusGeneratorVersion}",
@@ -59,7 +63,7 @@ ext {//依赖版本
             "guava"               : "com.google.guava:guava:${guavaVersion}",
             "zxing"               : "com.google.zxing:core:${zxingVersion}",
             "rocketMq"            : "org.apache.rocketmq:rocketmq-spring-boot-starter:${rocketMqVersion}",
-            "mongo"               : "org.springframework.boot:spring-boot-starter-data-mongodb:${springBootVersion}",
+
     ]
 
 }
@@ -89,6 +93,8 @@ subprojects {
         testImplementation "${lib.'starter-test'}"
         implementation "${lib.'hutool'}"
         implementation "${lib.'zxing'}"
+        implementation "${lib.'starter-redis'}"
+        implementation "${lib.'common-pool2'}"
         implementation "${lib.'rocketMq'}"
     }
 }

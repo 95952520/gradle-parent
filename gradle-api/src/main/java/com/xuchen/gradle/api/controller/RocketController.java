@@ -4,7 +4,9 @@ import cn.hutool.core.util.RandomUtil;
 import com.xuchen.gradle.core.model.R;
 import com.xuchen.gradle.core.mysql.user.entity.User;
 import com.xuchen.gradle.core.rocket.producer.ProducerService;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDateTime;
 
 @RestController
+@ConditionalOnBean(RocketMQTemplate.class)
 @RequestMapping("rocket")
 public class RocketController {
 

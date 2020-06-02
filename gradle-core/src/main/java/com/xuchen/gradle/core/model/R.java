@@ -32,7 +32,11 @@ public class R {
     }
 
     public static R fail(String msg) {
-        return new R(false, 1, msg, null);
+        return fail(1,msg);
+    }
+
+    public static R fail(int code,String msg) {
+        return new R(false, code, msg, null);
     }
 
     public static R fail() {

@@ -7,5 +7,4 @@ dependencies {
     testImplementation "${lib.'starter-freemarker'}"
     testImplementation "${lib.'poi'}"
     testImplementation "${lib.'guava'}"
-    testImplementation "${lib.'rocketMq'}"
 }

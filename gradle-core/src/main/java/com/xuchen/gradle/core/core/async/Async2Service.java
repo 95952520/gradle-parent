@@ -33,7 +33,7 @@ public class Async2Service {
     }
     @Async
     public void method4(){
-        log.info("async2---------method3");
-        async1Service.method2();
+        log.info("async2---------method4");
+        method2();
     }
 }

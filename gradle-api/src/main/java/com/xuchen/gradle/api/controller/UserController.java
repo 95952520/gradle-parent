@@ -4,6 +4,8 @@ package com.xuchen.gradle.api.controller;
 import cn.hutool.core.img.ImgUtil;
 import cn.hutool.extra.qrcode.QrCodeUtil;
 import cn.hutool.extra.qrcode.QrConfig;
+import cn.hutool.json.JSONUtil;
+import com.xuchen.gradle.core.core.common.RequestContextProxy;
 import com.xuchen.gradle.core.mysql.user.entity.User;
 import com.xuchen.gradle.core.model.R;
 import com.xuchen.gradle.core.mysql.user.service.UserService;
