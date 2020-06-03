@@ -25,6 +25,7 @@ public class RequestHandler implements HandlerInterceptor {
         String token = request.getHeader("Authorization");
         if (StrUtil.isBlank(token)){
             log.warn("请求头里不含token");
+            return true;//正常情况下没有请求头就返回false
         }
         log.info("请求头里拿到token：{}",token);
         User user = jwtService.parseToken(token);

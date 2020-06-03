@@ -7,7 +7,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -38,11 +40,15 @@ public class User implements Serializable {
     /**
      * 用户名
      */
+    @NotBlank(message = "用户名不能为空")
+    @Length(min = 6,max = 20,message = "名称长度必须为6-20位")
     private String nickName;
 
     /**
      * 密码
      */
+    @NotBlank(message = "密码不能为空")
+    @Length(min = 6,max = 20,message = "密码长度必须为6-20位")
     private String password;
 
     private LocalDateTime createTime;

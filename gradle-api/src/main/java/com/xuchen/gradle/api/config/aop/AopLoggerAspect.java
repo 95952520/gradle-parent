@@ -1,6 +1,8 @@
 package com.xuchen.gradle.api.config.aop;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.json.JSONUtil;
+import com.xuchen.gradle.core.model.ex.BusiException;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -8,12 +10,17 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Component
 @Aspect
@@ -30,10 +37,16 @@ public class AopLoggerAspect {
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
+        ArrayList<Object> objects = CollUtil.newArrayList(joinPoint.getArgs());
+        BeanPropertyBindingResult bindingResult = (BeanPropertyBindingResult) objects.stream().filter(item -> item instanceof BeanPropertyBindingResult).findAny().orElse(null);
+        if (bindingResult != null && bindingResult.getAllErrors().size() > 0) {
+            ObjectError error = bindingResult.getAllErrors().get(0);
+            throw new BusiException(error.getDefaultMessage());
+        }
         if ("get".equalsIgnoreCase(request.getMethod())) {
-            log.info("Get请求[{}]入参:[{}]", request.getRequestURI(), getJsonParams(request.getParameterMap()));
+            log.info("[Get]请求[{}]入参:[{}]", request.getRequestURI(), getJsonParams(request.getParameterMap()));
         } else {
-            log.info("Post请求[{}]入参:[{}]", request.getRequestURI(), JSONUtil.toJsonStr(joinPoint.getArgs()[0]));
+            log.info("[Post]请求[{}]入参:[{}]", request.getRequestURI(), JSONUtil.toJsonStr(objects));
         }
         long millis = System.currentTimeMillis();
         Object result = joinPoint.proceed();
@@ -44,9 +57,9 @@ public class AopLoggerAspect {
 
 
     private static String getJsonParams(Map<String, String[]> map) {
-        Map<String, String> paramsMap = new HashMap<>();
+        Map<String, List<String>> paramsMap = new HashMap<>();
         for (Map.Entry<String, String[]> entry : map.entrySet()) {
-            paramsMap.put(entry.getKey(), entry.getValue()[0]);
+            paramsMap.put(entry.getKey(), CollUtil.newArrayList(entry.getValue()));
         }
         return JSONUtil.toJsonStr(paramsMap);
     }

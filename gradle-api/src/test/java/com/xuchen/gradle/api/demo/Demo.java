@@ -16,10 +16,13 @@ public class Demo {
 //                    put("createTime", "2020-04-09 09:58:34");
 //                }}))
 //                .execute();
-        HttpResponse response = HttpUtil.createGet("http://localhost/hello")
-                .header("Authorization", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJncmFkbGVTdWJqZWN0IiwiY3VzdG9tZXJfdXNlciI6IntcImNyZWF0ZVRpbWVcIjoxNTkxMDg2MTI3OTk3LFwibmlja05hbWVcIjpcIm5pY2tOYW1lOTlcIixcImlkXCI6OTl9IiwiaXNzIjoiZ3JhZGxlU2VydmVyIiwiZXhwIjoxNTkxMDkzMzI4LCJpYXQiOjE1OTEwODYxMjh9.3X73XUB5Ng4cHfd6g2ebRgY9AW6ULjEnuIaMmBhkxFg")
-                .form("name", "xuchen")
+        HttpResponse response = HttpUtil.createGet("http://localhost/login")
+                .form("nickName", "nickName5")
+                .form("password", "000")
                 .execute();
+//        HttpResponse response = HttpUtil.createGet("http://localhost/hello")
+//                .form("name", "namename")
+//                .execute();
         System.out.println(response.body());
     }
 }
