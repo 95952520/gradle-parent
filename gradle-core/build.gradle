@@ -1,11 +1,5 @@
 dependencies {
-    implementation "${lib.'starter-thymeleaf'}"
-    implementation "${lib.'jwt'}"
 
-    //没有引用mongo时不报错
-//    implementation "${lib.'mongo'}"
-    compileOnly "${lib.'mongo'}"
-    implementation "${lib.'rocketMq'}"
 }
 
 bootJar {

@@ -37,6 +37,7 @@ ext {//依赖版本
     zxingVersion = "3.4.0"
     rocketMqVersion = "2.0.4"
     jwtVersion = "3.10.2"
+    jsoupVersion = "1.12.1"
     commonPool2Version = "2.8.0"
 
     lib = [
@@ -46,14 +47,14 @@ ext {//依赖版本
             "starter-thymeleaf"   : "org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}",
             "starter-freemarker"  : "org.springframework.boot:spring-boot-starter-freemarker:${springBootVersion}",
             "starter-aop"         : "org.springframework.boot:spring-boot-starter-aop:${springBootVersion}",
+            "starter-redis"       : "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}",
+            "common-pool2"        : "org.apache.commons:commons-pool2:${commonPool2Version}",
             "lombok"              : "org.projectlombok:lombok:${lombokVersion}",
             "mysql"               : "mysql:mysql-connector-java:${mysqlConnectorVersion}",
             "mybatis"             : "org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisVersion}",
             "mybatisPlus"         : "com.baomidou:mybatis-plus-boot-starter:${mybatisPlusGeneratorVersion}",
             "hutool"              : "cn.hutool:hutool-all:${hutoolVersion}",
             "jwt"                 : "com.auth0:java-jwt:${jwtVersion}",
-            "starter-redis"       : "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}",
-            "common-pool2"        : "org.apache.commons:commons-pool2:${commonPool2Version}",
             "mongo"               : "org.springframework.boot:spring-boot-starter-data-mongodb:${springBootVersion}",
 
             //test
@@ -63,6 +64,7 @@ ext {//依赖版本
             "guava"               : "com.google.guava:guava:${guavaVersion}",
             "zxing"               : "com.google.zxing:core:${zxingVersion}",
             "rocketMq"            : "org.apache.rocketmq:rocketmq-spring-boot-starter:${rocketMqVersion}",
+            "jsoup"               : "org.jsoup:jsoup:${jsoupVersion}",
 
     ]
 
@@ -84,17 +86,25 @@ subprojects {
     dependencies {
         annotationProcessor "${lib.lombok}"
         compileOnly "${lib.lombok}"
-        testAnnotationProcessor "${lib.lombok}"
-        testCompileOnly "${lib.lombok}"
-        implementation "${lib.'starter'}"
         implementation "${lib.'starter-web'}"
         implementation "${lib.'mybatis'}"
         implementation "${lib.'mybatisPlus'}"
-        testImplementation "${lib.'starter-test'}"
         implementation "${lib.'hutool'}"
         implementation "${lib.'zxing'}"
         implementation "${lib.'starter-redis'}"
         implementation "${lib.'common-pool2'}"
         implementation "${lib.'rocketMq'}"
+
+//        compileOnly "${lib.'mongo'}"
+//        implementation "${lib.'mongo'}"
+        implementation "${lib.'jwt'}"
+        testCompileOnly "${lib.lombok}"
+        testAnnotationProcessor "${lib.lombok}"
+        testImplementation "${lib.'starter-test'}"
+        testImplementation "${lib.'mybatisPlusGenerator'}"
+        testImplementation "${lib.'starter-freemarker'}"
+        testImplementation "${lib.'poi'}"
+        testImplementation "${lib.'guava'}"
+        testImplementation "${lib.'rocketMq'}"
     }
 }

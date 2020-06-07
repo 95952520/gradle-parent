@@ -8,4 +8,3 @@ spring:
 logging:
   level:
     root: INFO
-  file: logs/gradle.log
